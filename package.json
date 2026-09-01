@@ -28,7 +28,7 @@
     "publish-packages": "changeset publish"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.31.0",
+    "@changesets/cli": "^3.0.1",
     "@vitest/coverage-v8": "^4.1.10",
     "prettier": "^3.9.6",
     "shx": "^0.4.0",
