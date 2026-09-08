@@ -5,7 +5,7 @@ import dts from "vite-plugin-dts";
 import pkg from "./package.json";
 
 const externalDependencies = Object.keys(pkg.dependencies || {}).filter(
-  (dependency) => dependency !== "@mi8y/cds-agent-utils",
+  (dependency) => dependency !== "@mi8y/cap-agents-utils",
 );
 
 export default defineConfig({

@@ -18,7 +18,7 @@ import {
   TASKS,
   WRITES_IDX_MAP,
 } from "@langchain/langgraph-checkpoint";
-import { readParentsWithChildren } from "@mi8y/cds-agent-utils";
+import { readParentsWithChildren } from "@mi8y/cap-agents-utils";
 import cds from "@sap/cds";
 
 export const DEFAULT_FQN_ENTITY_CHECKPOINTS =

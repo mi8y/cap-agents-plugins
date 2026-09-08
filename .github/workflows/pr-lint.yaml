@@ -44,10 +44,11 @@ jobs:
             hotfix
           scopes: |
             cds-langgraph-persistence
-            cds-langgraph-checkpointer
-            cds-langgraph-memorystore
-            cds-langchain-vectorstore
-            cds-langchain-telemetry
+            cap-agents-checkpointer
+            cap-agents-memorystore
+            cap-agents-cds-vectorstore
+            cap-agents-aicore-vectorstore
+            cap-agents-cmis-backend
             docs
             examples
             internal

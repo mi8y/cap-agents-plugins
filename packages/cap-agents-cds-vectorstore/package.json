@@ -1,16 +1,16 @@
 {
-  "name": "@mi8y/cds-langchain-vectorstore",
+  "name": "@mi8y/cap-agents-cds-vectorstore",
   "version": "0.1.0",
   "description": "CDS Plugin for building vector retrieval in LangGraph/LangChain/DeepAgents - Vector Store",
   "author": "Merbin J Anselm <merbin.j.anselm@mi8y.com>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mi8y/cds-agent-plugins.git"
+    "url": "git+https://github.com/mi8y/cap-agents-plugins.git"
   },
   "license": "MIT",
-  "homepage": "https://github.com/mi8y/cds-agent-plugins/tree/main/packages/cds-langchain-vectorstore",
+  "homepage": "https://github.com/mi8y/cap-agents-plugins/tree/main/packages/cap-agents-cds-vectorstore",
   "bugs": {
-    "url": "https://github.com/mi8y/cds-agent-plugins/issues"
+    "url": "https://github.com/mi8y/cap-agents-plugins/issues"
   },
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -45,24 +45,24 @@
     "retrieval"
   ],
   "dependencies": {
-    "@mi8y/cds-agent-utils": "workspace:*"
+    "@mi8y/cap-agents-utils": "workspace:*"
   },
   "devDependencies": {
-    "@cap-js/cds-typer": "^0.40.0",
-    "@cap-js/cds-types": "^0.18.0",
+    "@cap-js/cds-typer": "^0.41.0",
+    "@cap-js/cds-types": "^0.19.0",
     "@cap-js/sqlite": "^3.0.2",
     "@eslint/js": "^10.0.1",
-    "@langchain/core": "^1.2.1",
-    "@sap/cds": ">=9",
-    "@sap/eslint-plugin-cds": "^4.2.4",
+    "@langchain/core": "^1.2.9",
+    "@sap/cds": ">=10",
+    "@sap/eslint-plugin-cds": "^4.2.5",
     "@tsconfig/recommended": "^1.0.13",
     "@typescript/typescript6": "^6.0.2",
-    "eslint": "^10.6.0",
+    "eslint": "^10.9.1",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.65.0"
   },
   "peerDependencies": {
-    "@sap/cds": ">=9",
+    "@sap/cds": ">=10",
     "@langchain/core": ">=1"
   },
   "peerDependenciesMeta": {
@@ -85,7 +85,7 @@
   },
   "cds": {
     "requires": {
-      "cds-langchain-vectorstore": {}
+      "cap-agents-cds-vectorstore": {}
     }
   }
 }

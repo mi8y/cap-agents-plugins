@@ -1,8 +1,8 @@
-# @mi8y/cds-langchain-vectorstore
+# @mi8y/cap-agents-cds-vectorstore
 
-[![npm version](https://img.shields.io/npm/v/@mi8y/cds-langchain-vectorstore)](https://www.npmjs.com/package/@mi8y/cds-langchain-vectorstore)
+[![npm version](https://img.shields.io/npm/v/@mi8y/cap-agents-cds-vectorstore)](https://www.npmjs.com/package/@mi8y/cap-agents-cds-vectorstore)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![monthly downloads](https://img.shields.io/npm/dm/@mi8y/cds-langchain-vectorstore)](https://www.npmjs.com/package/@mi8y/cds-langchain-vectorstore)
+[![monthly downloads](https://img.shields.io/npm/dm/@mi8y/cap-agents-cds-vectorstore)](https://www.npmjs.com/package/@mi8y/cap-agents-cds-vectorstore)
 
 A simple LangChain vector store for SAP CAP applications.
 
@@ -11,7 +11,7 @@ This package gives you a `VectorStore` implementation backed by CAP CDS entities
 ## Installation
 
 ```bash
-npm install @mi8y/cds-langchain-vectorstore
+npm install @mi8y/cap-agents-cds-vectorstore
 ```
 
 Then register the CDS model in your CAP project:
@@ -42,7 +42,7 @@ At runtime, `CDSVectorStore` reads and writes through CAP CDS, so it fits natura
 
 ```ts
 import { OpenAIEmbeddings } from "@langchain/openai";
-import { CDSVectorStore } from "@mi8y/cds-langchain-vectorstore";
+import { CDSVectorStore } from "@mi8y/cap-agents-cds-vectorstore";
 
 const embeddings = new OpenAIEmbeddings({
   model: "text-embedding-3-small",
@@ -94,7 +94,7 @@ To use a different namespace or entity definitions (i.e. one definition per vect
 
 ```cds
 using { managed } from '@sap/cds/common';
-using { VectorDocument, VectorDocumentMetadata } from '@mi8y/cds-langchain-vectorstore';
+using { VectorDocument, VectorDocumentMetadata } from '@mi8y/cap-agents-cds-vectorstore';
 
 namespace my.app.vectorstore;
 
