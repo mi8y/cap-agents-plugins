@@ -6,11 +6,11 @@ import {
   MaxMarginalRelevanceSearchOptions,
   VectorStore,
 } from "@langchain/core/vectorstores";
-import { readParentsWithChildren } from "@mi8y/cds-agent-utils";
+import { readParentsWithChildren } from "@mi8y/cap-agents-utils";
 import cds from "@sap/cds";
 import * as utils from "./utils";
 
-const LOG = cds.log("cds-langchain-vectorstore");
+const LOG = cds.log("cap-agents-cds-vectorstore");
 
 export const DEFAULT_FQN_ENTITY_DOCUMENTS =
   "plugin.langchain.vectorstore.Documents";

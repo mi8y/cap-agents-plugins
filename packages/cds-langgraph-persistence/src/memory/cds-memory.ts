@@ -13,7 +13,7 @@ import {
 } from "@langchain/langgraph-checkpoint";
 import cds from "@sap/cds";
 import * as utils from "./utils";
-import { readParentsWithChildren } from "@mi8y/cds-agent-utils";
+import { readParentsWithChildren } from "@mi8y/cap-agents-utils";
 
 export const DEFAULT_FQN_ENTITY_STORE_ITEMS =
   "plugin.langgraph.persistence.StoreItems";

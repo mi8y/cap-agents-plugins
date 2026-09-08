@@ -1,6 +1,6 @@
-# CDS Vector Store Plugin for LangGraph Checkpoint & Memory
+# CAP Agents Plugin for CDS-based Vector Store
 
-This project builds a CDS Plugin for SAP CAP applications to build LangGraph/LangChain/Deep Agents based applications with Checkpoint and Memory persistence.
+This project builds a CDS Plugin for SAP CAP applications to build LangGraph/LangChain/Deep Agents based applications with CDS-based Vector Stores.
 
 ## Project Structure
 

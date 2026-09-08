@@ -1,6 +1,6 @@
-# Common Utils - CDS Agent Plugins
+# Common Utils
 
-This package contains common utilities for CDS agent plugins. It provides helper functions and abstractions.
+This package contains common utilities for CAP agents plugins. It provides helper functions and abstractions.
 
 ## Project Structure
 

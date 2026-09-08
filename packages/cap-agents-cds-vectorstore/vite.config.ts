@@ -5,7 +5,7 @@ import { builtinModules } from "module";
 import pkg from "./package.json";
 
 const externalDependencies = Object.keys(pkg.dependencies || {}).filter(
-  (dependency) => dependency !== "@mi8y/cds-agent-utils",
+  (dependency) => dependency !== "@mi8y/cap-agents-utils",
 );
 
 export default defineConfig({
@@ -25,7 +25,7 @@ export default defineConfig({
     minify: false, // disable since this is a node library
     lib: {
       entry: "src/index.ts",
-      name: "@mi8y/cds-langchain-vectorstore",
+      name: "@mi8y/cap-agents-cds-vectorstore",
       fileName: "index",
       formats: ["es", "cjs"],
     },
@@ -43,7 +43,7 @@ export default defineConfig({
 
   // Testing Configuration (Vitest)
   test: {
-    name: "cds-langchain-vectorstore",
+    name: "cap-agents-cds-vectorstore",
     globals: true,
     root: import.meta.dirname,
     environment: "node",

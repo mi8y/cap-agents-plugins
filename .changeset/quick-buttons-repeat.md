@@ -1,5 +1,5 @@
 ---
-"@mi8y/cds-langchain-vectorstore": minor
+"@mi8y/cap-agents-cds-vectorstore": minor
 ---
 
-Added `@mi8y/cds-langchain-vectorstore` package for building simple RAG pipelines
+Added `@mi8y/cap-agents-cds-vectorstore` package for building simple RAG pipelines

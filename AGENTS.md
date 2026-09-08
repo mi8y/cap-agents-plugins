@@ -1,6 +1,6 @@
 # CAP CDS Plugin for building LangGraph/LangChain/Deep Agents within CAP framework
 
-This is a turbo-based monorepo containing CDS plugins for building production-ready LangGraph/LangChain/Deep Agents within SAP CAP framework.
+This is a turbo-based monorepo containing CDS plugins for building production-ready LangGraph/LangChain/Deep Agents within SAP CAP framework. The plugins here serves as a addon for [`@cap-js/agents`](https://github.com/cap-js/agents) plugin and extend its capabilities with additional features like memory, vector stores, additional backends etc.
 
 ## Project Structure
 
@@ -8,20 +8,26 @@ This is a turbo-based monorepo containing CDS plugins for building production-re
 ├── AGENTS.md <- You are here
 ├── package.json
 ├── packages
-│   ├── cds-agent-utils
-│   │   ├── AGENTS.md <- Read this for common utils
-│   │   └── ...
 │   ├── integration-tests
 │   │   ├── AGENTS.md <- Read this for integration test setup
 │   │   └── ...
 │   ├── cds-langgraph-persistence
-│   │   ├── AGENTS.md <- Read this for persistence plugin (checkpoint & memory) setup
+│   │   ├── AGENTS.md <- Read this for persistence plugin (checkpoint) setup
 │   │   └── ...
-│   ├── cds-langchain-vectorstore
-│   │   ├── AGENTS.md <- Read this for vectorstore plugin setup
+│   ├── cap-agents-memory
+│   │   ├── AGENTS.md <- Read this for memory plugin setup
 │   │   └── ...
-│   └── cds-langchain-telemetry
-│     ├── AGENTS.md <- Read this for telemetry plugin setup
+│   ├── cap-agents-cds-vectorstore
+│   │   ├── AGENTS.md <- Read this for CDS-based vectorstore plugin setup
+│   │   └── ...
+│   ├── cap-agents-aicore-vectorstore
+│   │   ├── AGENTS.md <- Read this for AICore Document Grounding based vectorstore plugin setup
+│   │   └── ...
+│   ├── cap-agents-utils
+│   │   ├── AGENTS.md <- Read this for common utils
+│   │   └── ...
+│   └── integration-tests
+│     ├── AGENTS.md <- Read this for integration test setup
 │     └── ...
 ├── examples
 │   └── ...
