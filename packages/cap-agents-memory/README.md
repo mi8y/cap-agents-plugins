@@ -8,10 +8,10 @@ CDS-backed long-term memory for LangGraph. `CdsMemoryStore` implements LangGraph
 
 ```bash
 npm install @mi8y/cap-agents-memory
-cds add cap-agents-memory
+cds add agent-memory
 ```
 
-The add command creates `db/cap-agents-memory.cds` with `StoreItems` and `StoreItemFields` in the `plugin.langgraph.memory` namespace. It never overwrites an existing generated file.
+The add command creates `db/agent-memory.cds` with `StoreItems` and `StoreItemFields` in the `plugin.langgraph.memory` namespace. It never overwrites an existing generated file.
 
 Requires `@sap/cds >= 10` and `@langchain/core >= 1`.
 

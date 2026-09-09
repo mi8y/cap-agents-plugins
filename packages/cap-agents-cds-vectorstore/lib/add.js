@@ -28,7 +28,7 @@ class AddLangChainVectorstorePlugin extends cds.add.Plugin {
 
     const cdsFileRelPath = cds.utils.path.join(
       dbRelPath,
-      "langchain-vectorstore.cds",
+      "agent-cds-vectorstore.cds",
     );
     const cdsFileAbsPath = cds.utils.path.join(cds.root, cdsFileRelPath);
 

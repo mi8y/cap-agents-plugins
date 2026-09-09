@@ -93,8 +93,10 @@ for combo in "${VERSIONS[@]}"; do
   echo ""
   echo "→ Running 'add' command..."
   pnpm exec cds add langgraph-checkpointer
-  pnpm exec cds add cap-agents-memory
-  pnpm exec cds add cap-agents-memory
+
+  # Add the agent-memory store to the project (twice to check if it does not break on subsequent additions)
+  pnpm exec cds add agent-memory
+  pnpm exec cds add agent-memory
 
   echo ""
   echo "→ Running tests..."
@@ -111,7 +113,7 @@ for combo in "${VERSIONS[@]}"; do
   echo "→ Cleaning up..."
   rm -rf node_modules pnpm-lock.yaml
   rm db/langgraph-checkpointer.cds 2>/dev/null || true
-  rm db/cap-agents-memory.cds 2>/dev/null || true
+  rm db/agent-memory.cds 2>/dev/null || true
 
   popd > /dev/null
 done

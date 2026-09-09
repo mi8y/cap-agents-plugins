@@ -6,7 +6,7 @@ This package provides `CdsMemoryStore`, a CDS-backed implementation of LangGraph
 
 - `src/memory/` contains the Store implementation and CDS mapping helpers.
 - `index.cds` exports reusable `StoreItem` and `StoreItemField` aspects.
-- `lib/add.js` generates default entities through `cds add cap-agents-memory`.
+- `lib/add.js` generates default entities through `cds add agent-memory`.
 - `tests/memory/` contains the Store unit suite.
 
 ## Commands

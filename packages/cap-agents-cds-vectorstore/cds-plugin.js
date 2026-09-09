@@ -2,9 +2,9 @@ const cds = require("@sap/cds");
 
 const LOG = cds.log("cap-agents-cds-vectorstore");
 
-// Register the 'langchain-vectorstore' plugin for the 'cds add' command
+// Register the 'agent-cds-vectorstore' plugin for the 'cds add' command
 cds.add?.register(
-  "langchain-vectorstore",
+  "agent-cds-vectorstore",
   require("./lib/add").AddLangChainVectorstorePlugin,
 );
 
@@ -27,7 +27,7 @@ cds.on("loaded", (model) => {
   if (!(hasCdsDocumentAspectApplied && hasCdsDocumentMetadataAspectApplied)) {
     LOG.warn(
       `Detected '@mi8y/cap-agents-cds-vectorstore' CDS plugin installation, but no entities implementing the aspects 'VectorDocument' or 'VectorDocumentMetadata' found in the model. ` +
-        `Run 'cds add langchain-vectorstore' to add the default vectorstore entities.`,
+        `Run 'cds add agent-cds-vectorstore' to add the default vectorstore entities.`,
     );
   }
 });

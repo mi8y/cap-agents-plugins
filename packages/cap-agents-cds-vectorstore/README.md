@@ -17,10 +17,10 @@ npm install @mi8y/cap-agents-cds-vectorstore
 Then register the CDS model in your CAP project:
 
 ```bash
-cds add langchain-vectorstore
+cds add agent-cds-vectorstore
 ```
 
-This creates `db/langchain-vectorstore.cds` with two concrete entities (`Documents` and `DocumentMetadata`) under the default `plugin.langchain.vectorstore` namespace. The entities implement the package's reusable aspects with a default `Vector(1536)` embedding size (matching OpenAI `text-embedding-3-small`).
+This creates `db/agent-cds-vectorstore.cds` with two concrete entities (`Documents` and `DocumentMetadata`) under the default `plugin.langchain.vectorstore` namespace. The entities implement the package's reusable aspects with a default `Vector(1536)` embedding size (matching OpenAI `text-embedding-3-small`).
 
 Requires:
 
@@ -34,7 +34,7 @@ The plugin provides two reusable CDS **aspects** under the `plugin.langchain.vec
 - `VectorDocument` — defines the shape for stored content and embeddings
 - `VectorDocumentMetadata` — defines the shape for document metadata entries
 
-Running `cds add langchain-vectorstore` generates default concrete entities implementing these aspects.
+Running `cds add agent-cds-vectorstore` generates default concrete entities implementing these aspects.
 
 At runtime, `CDSVectorStore` reads and writes through CAP CDS, so it fits naturally into CAP applications and their existing database setup.
 
