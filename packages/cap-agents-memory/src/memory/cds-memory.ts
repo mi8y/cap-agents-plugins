@@ -16,9 +16,9 @@ import * as utils from "./utils";
 import { readParentsWithChildren } from "@mi8y/cap-agents-utils";
 
 export const DEFAULT_FQN_ENTITY_STORE_ITEMS =
-  "plugin.langgraph.persistence.StoreItems";
+  "plugin.langgraph.memory.StoreItems";
 export const DEFAULT_FQN_ENTITY_STORE_ITEM_FIELDS =
-  "plugin.langgraph.persistence.StoreItemFields";
+  "plugin.langgraph.memory.StoreItemFields";
 
 export type CdsMemoryStoreConfig = {
   /**
@@ -36,13 +36,13 @@ export type CdsMemoryStoreConfig = {
   /**
    * The fully qualified name of the entity to use for storing items.
    *
-   * @default "plugin.langgraph.persistence.StoreItems"
+   * @default "plugin.langgraph.memory.StoreItems"
    */
   fqnStoreItemsEntity?: string;
   /**
    * The fully qualified name of the entity to use for storing item fields.
    *
-   * @default "plugin.langgraph.persistence.StoreItemFields"
+   * @default "plugin.langgraph.memory.StoreItemFields"
    */
   fqnStoreItemFieldsEntity?: string;
 };

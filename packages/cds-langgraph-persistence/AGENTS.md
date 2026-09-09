@@ -1,6 +1,6 @@
-# CDS Persistence Plugin for LangGraph Checkpoint & Memory
+# CDS Persistence Plugin for LangGraph Checkpoints
 
-This is a CDS Plugin NPM package for SAP CAP applications to enable adding Checkpoint & Memory-Store persistence for LangGraph/LangChain/Deep Agents.
+This package provides LangGraph checkpoint persistence (short-term, thread-scoped memory) for SAP CAP applications. For long-term memory stores, use `@mi8y/cap-agents-memory`.
 
 ## Project Structure
 
@@ -13,12 +13,8 @@ This is a CDS Plugin NPM package for SAP CAP applications to enable adding Check
 │ ├── checkpoint
 │ │ ├── cds-checkpointer.ts
 │ │ └── index.ts
-│ └── memory
-│   ├── cds-memory.ts
-│   └── index.ts
 ├── tests // unit tests
 │   ├── checkpoint
-│   └── memory
 └── cds-plugin.js // CDS plugin entry point
 
 ## Commands

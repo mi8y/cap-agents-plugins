@@ -45,7 +45,7 @@ jobs:
           scopes: |
             cds-langgraph-persistence
             cap-agents-checkpointer
-            cap-agents-memorystore
+            cap-agents-memory
             cap-agents-cds-vectorstore
             cap-agents-aicore-vectorstore
             cap-agents-cmis-backend

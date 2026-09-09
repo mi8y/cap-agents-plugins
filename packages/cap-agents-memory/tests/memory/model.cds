@@ -1,4 +1,4 @@
-namespace plugin.langgraph.persistence;
+namespace plugin.langgraph.memory;
 
 using {
     StoreItem,

@@ -1,5 +1,4 @@
 // @ts-check
-
 import js from "@eslint/js";
 import { defineConfig } from "eslint/config";
 import tseslint from "typescript-eslint";
@@ -15,17 +14,10 @@ export default defineConfig(
       js.configs.recommended,
       tseslint.configs.recommended,
       cds.configs.recommended,
-      {
-        rules: {
-          "@typescript-eslint/no-unused-expressions": "off", // cds uses expressions for 'column' in queries
-        },
-      },
+      { rules: { "@typescript-eslint/no-unused-expressions": "off" } },
     ],
     languageOptions: {
-      parserOptions: {
-        project: true,
-        tsconfigRootDir: import.meta.dirname,
-      },
+      parserOptions: { project: true, tsconfigRootDir: import.meta.dirname },
     },
   },
 );

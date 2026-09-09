@@ -35,6 +35,11 @@ if [ ! -d "$ROOT_DIR/packages/cds-langgraph-persistence/dist" ]; then
   exit 1
 fi
 
+if [ ! -d "$ROOT_DIR/packages/cap-agents-memory/dist" ]; then
+  echo "ERROR: Memory package not built. Run 'pnpm build' in the repo root first."
+  exit 1
+fi
+
 # --- Backup pristine lockfile ---
 if [ ! -f "$ROOT_DIR/pnpm-lock.yaml" ]; then
   echo "ERROR: pnpm-lock.yaml not found in $ROOT_DIR"
@@ -88,7 +93,8 @@ for combo in "${VERSIONS[@]}"; do
   echo ""
   echo "→ Running 'add' command..."
   pnpm exec cds add langgraph-checkpointer
-  pnpm exec cds add langgraph-memorystore
+  pnpm exec cds add cap-agents-memory
+  pnpm exec cds add cap-agents-memory
 
   echo ""
   echo "→ Running tests..."
@@ -105,7 +111,7 @@ for combo in "${VERSIONS[@]}"; do
   echo "→ Cleaning up..."
   rm -rf node_modules pnpm-lock.yaml
   rm db/langgraph-checkpointer.cds 2>/dev/null || true
-  rm db/langgraph-memorystore.cds 2>/dev/null || true
+  rm db/cap-agents-memory.cds 2>/dev/null || true
 
   popd > /dev/null
 done
@@ -120,9 +126,9 @@ echo "========================================"
 echo "              Summary                    "
 echo "========================================"
 echo "Passed: ${#PASSED[@]}"
-for p in "${PASSED[@]}"; do echo "  ✓ $p"; done
+for p in "${PASSED[@]:-}"; do [ -n "$p" ] && echo "  ✓ $p"; done
 echo "Failed: ${#FAILED[@]}"
-for f in "${FAILED[@]}"; do echo "  ✗ $f"; done
+for f in "${FAILED[@]:-}"; do [ -n "$f" ] && echo "  ✗ $f"; done
 
 if [ ${#FAILED[@]:-0} -gt 0 ]; then
   exit 1
