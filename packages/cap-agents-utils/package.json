@@ -1,7 +1,17 @@
 {
   "name": "@mi8y/cap-agents-utils",
   "version": "1.0.0",
-  "private": true,
+  "description": "Utility functions and helpers for building CAP agents with LangChain and DeepAgents",
+  "author": "Merbin J Anselm <merbin.j.anselm@mi8y.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mi8y/cap-agents-plugins.git"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/mi8y/cap-agents-plugins/tree/main/packages/cap-agents-utils",
+  "bugs": {
+    "url": "https://github.com/mi8y/cap-agents-plugins/issues"
+  },
   "packageManager": "pnpm@11.11.0",
   "dependencies": {},
   "main": "./dist/index.js",
@@ -14,6 +24,13 @@
       "require": "./dist/index.js"
     }
   },
+  "files": [
+    "dist/**/*",
+    "lib/",
+    "LICENSE",
+    "package.json",
+    "README.md"
+  ],
   "scripts": {
     "build": "shx rm -rf dist && npm run build:cds-types && vite build && npm run copy:cds-types",
     "build:cds-types": "node ../../scripts/build-cds-types.mjs",
