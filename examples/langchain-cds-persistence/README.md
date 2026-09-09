@@ -147,4 +147,4 @@ Open `test.http` in VS Code with the REST Client extension, or use `curl` to ste
 
 ## CDS Memory Store
 
-The `CdsCheckpointSaver` covers short-term agent state (conversation history within a thread). For **long-term memory** — storing facts, user preferences, and knowledge that persists across threads and sessions — the `CdsMemoryStore` is in development and will be added to this example soon.
+The `CdsCheckpointSaver` covers short-term agent state (conversation history within a thread). For **long-term memory** — facts, user preferences, and knowledge shared across threads and sessions — use [`CdsMemoryStore`](../../packages/cap-agents-memory/) from `@mi8y/cap-agents-memory`.

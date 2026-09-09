@@ -1,14 +1,14 @@
 {
-  "name": "@mi8y/cds-langgraph-persistence",
-  "version": "0.6.0",
-  "description": "CDS Plugin for LangGraph checkpoint persistence in SAP CAP applications",
+  "name": "@mi8y/cap-agents-memory",
+  "version": "0.1.0",
+  "description": "CDS Plugin for LangGraph long-term memory stores in SAP CAP applications",
   "author": "Merbin J Anselm <merbin.j.anselm@mi8y.com>",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mi8y/cap-agents-plugins.git"
   },
   "license": "MIT",
-  "homepage": "https://github.com/mi8y/cap-agents-plugins",
+  "homepage": "https://github.com/mi8y/cap-agents-plugins/tree/main/packages/cap-agents-memory",
   "bugs": {
     "url": "https://github.com/mi8y/cap-agents-plugins/issues"
   },
@@ -40,21 +40,19 @@
     "agent",
     "langgraph",
     "langchain",
-    "deepagents",
-    "checkpointer",
-    "short-term-memory"
+    "memory",
+    "long-term-memory"
   ],
   "dependencies": {
-    "@langchain/langgraph-checkpoint": "^1.1.5"
+    "@langchain/langgraph-checkpoint": "^1.1.5",
+    "@mi8y/cap-agents-utils": "workspace:*"
   },
   "devDependencies": {
-    "@mi8y/cap-agents-utils": "workspace:*",
     "@cap-js/cds-typer": "^0.41.0",
     "@cap-js/cds-types": "^0.19.0",
     "@cap-js/sqlite": "^3.1.0",
     "@eslint/js": "^10.0.1",
     "@langchain/core": "^1.2.9",
-    "@langchain/langgraph-checkpoint-validation": "^1.1.1",
     "@sap/cds": ">=10",
     "@sap/eslint-plugin-cds": "^4.2.5",
     "@tsconfig/recommended": "^1.0.13",
@@ -64,12 +62,8 @@
     "typescript-eslint": "^8.65.0"
   },
   "peerDependencies": {
+    "@langchain/core": ">=1",
     "@sap/cds": ">=10"
-  },
-  "peerDependenciesMeta": {
-    "@sap/cds": {
-      "optional": false
-    }
   },
   "scripts": {
     "build": "shx rm -rf dist && npm run build:cds-types && vite build",
@@ -86,7 +80,7 @@
   },
   "cds": {
     "requires": {
-      "cds-langgraph-persistence": {}
+      "cap-agents-memory": {}
     }
   }
 }

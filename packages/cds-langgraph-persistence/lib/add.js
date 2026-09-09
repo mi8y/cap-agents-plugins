@@ -23,24 +23,6 @@ entity CheckpointWrites : CheckpointWrite {
 }
 `;
 
-const MEMORY_STORE_CDS_CONTENT = `namespace plugin.langgraph.persistence;
-
-using { StoreItem, StoreItemField } from '@mi8y/cds-langgraph-persistence';
-
-entity StoreItems : StoreItem {
-    fields : Composition of many StoreItemFields
-                 on fields.item = $self;
-}
-
-entity StoreItemFields : StoreItemField {
-    item      : Association to StoreItems
-                    on  item.graphName = $self.graphName
-                    and item.namespace = $self.namespace
-                    and item.id = $self.id;
-    embedding : Vector(1536); // IMPORTANT: The field name must be "embedding". // NOTE: configure the embedding size based on the model used for generating embeddings
-}
-`;
-
 async function writeCdsFile(cdsFileRelPath, cdsContent, description) {
   const cdsFileAbsPath = cds.utils.path.join(cds.root, cdsFileRelPath);
 
@@ -65,19 +47,6 @@ async function addCheckpointerEntities() {
   );
 }
 
-async function addMemoryStoreEntities() {
-  const dbPath = cds.env.folders?.db || "db/";
-  const cdsFileRelPath = cds.utils.path.join(
-    dbPath,
-    "langgraph-memorystore.cds",
-  );
-  await writeCdsFile(
-    cdsFileRelPath,
-    MEMORY_STORE_CDS_CONTENT,
-    "LangGraph memory store entities",
-  );
-}
-
 class AddLangGraphCheckpointerPlugin extends cds.add.Plugin {
   static help() {
     return "LangGraph checkpointer storage";
@@ -88,29 +57,6 @@ class AddLangGraphCheckpointerPlugin extends cds.add.Plugin {
   }
 }
 
-class AddLangGraphMemoryStorePlugin extends cds.add.Plugin {
-  static help() {
-    return "LangGraph memory store";
-  }
-
-  async run() {
-    await addMemoryStoreEntities();
-  }
-}
-
-class AddLangGraphPersistencePlugin extends cds.add.Plugin {
-  static help() {
-    return "LangGraph persistence alias; adds checkpointer and memory store";
-  }
-
-  async run() {
-    await addCheckpointerEntities();
-    await addMemoryStoreEntities();
-  }
-}
-
 module.exports = {
   AddLangGraphCheckpointerPlugin,
-  AddLangGraphMemoryStorePlugin,
-  AddLangGraphPersistencePlugin,
 };

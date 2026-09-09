@@ -104,6 +104,52 @@ importers:
         specifier: ^8.65.0
         version: 8.65.0(eslint@10.10.0)(typescript@6.0.3)
 
+  packages/cap-agents-memory:
+    dependencies:
+      '@langchain/langgraph-checkpoint':
+        specifier: ^1.1.5
+        version: 1.1.5(@langchain/core@1.2.9)
+      '@mi8y/cap-agents-utils':
+        specifier: workspace:*
+        version: link:../cap-agents-utils
+    devDependencies:
+      '@cap-js/cds-typer':
+        specifier: ^0.41.0
+        version: 0.41.0(@cap-js/cds-types@0.19.0(@sap/cds-dk@10.0.5)(@sap/cds@10.0.3(@eslint/js@10.0.1(eslint@10.10.0)))(@sap/xssec@4.13.1)(@types/express@5.0.6))(@sap/cds@10.0.3(@eslint/js@10.0.1(eslint@10.10.0)))
+      '@cap-js/cds-types':
+        specifier: ^0.19.0
+        version: 0.19.0(@sap/cds-dk@10.0.5)(@sap/cds@10.0.3(@eslint/js@10.0.1(eslint@10.10.0)))(@sap/xssec@4.13.1)(@types/express@5.0.6)
+      '@cap-js/sqlite':
+        specifier: ^3.1.0
+        version: 3.1.0(@sap/cds@10.0.3(@eslint/js@10.0.1(eslint@10.10.0)))
+      '@eslint/js':
+        specifier: ^10.0.1
+        version: 10.0.1(eslint@10.10.0)
+      '@langchain/core':
+        specifier: ^1.2.9
+        version: 1.2.9
+      '@sap/cds':
+        specifier: '>=10'
+        version: 10.0.3(@eslint/js@10.0.1(eslint@10.10.0))
+      '@sap/eslint-plugin-cds':
+        specifier: ^4.2.5
+        version: 4.2.5(@sap/cds@10.0.3(@eslint/js@10.0.1(eslint@10.10.0)))(eslint@10.10.0)
+      '@tsconfig/recommended':
+        specifier: ^1.0.13
+        version: 1.0.13
+      '@typescript/typescript6':
+        specifier: ^6.0.2
+        version: 6.0.2
+      eslint:
+        specifier: ^10.9.1
+        version: 10.10.0
+      typescript:
+        specifier: ^6.0.3
+        version: 6.0.3
+      typescript-eslint:
+        specifier: ^8.65.0
+        version: 8.65.0(eslint@10.10.0)(typescript@6.0.3)
+
   packages/cap-agents-utils:
     devDependencies:
       '@cap-js/cds-typer':
@@ -185,6 +231,9 @@ importers:
 
   packages/integration-tests:
     dependencies:
+      '@mi8y/cap-agents-memory':
+        specifier: workspace:*
+        version: link:../cap-agents-memory
       '@mi8y/cds-langgraph-persistence':
         specifier: workspace:*
         version: link:../cds-langgraph-persistence
