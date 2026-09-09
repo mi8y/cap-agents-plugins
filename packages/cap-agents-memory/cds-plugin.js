@@ -2,8 +2,9 @@ const cds = require("@sap/cds");
 
 const LOG = cds.log("cap-agents-memory");
 
+// Register the 'agent-memory' plugin for the 'cds add' command
 cds.add?.register(
-  "cap-agents-memory",
+  "agent-memory",
   require("./lib/add").AddCapAgentsMemoryPlugin,
 );
 
@@ -23,7 +24,7 @@ cds.on("loaded", (model) => {
   if (!(hasStoreItemAspectApplied && hasStoreItemFieldAspectApplied)) {
     LOG.warn(
       "Detected '@mi8y/cap-agents-memory' installation, but no entities implementing the aspects 'StoreItem' or 'StoreItemField' were found in the model. " +
-        "Run 'cds add cap-agents-memory' to add the default memory store entities.",
+        "Run 'cds add agent-memory' to add the default memory store entities.",
     );
   }
 });

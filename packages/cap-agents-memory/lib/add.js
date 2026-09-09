@@ -27,7 +27,7 @@ class AddCapAgentsMemoryPlugin extends cds.add.Plugin {
 
   async run() {
     const dbPath = cds.env.folders?.db || "db/";
-    const cdsFileRelPath = cds.utils.path.join(dbPath, "cap-agents-memory.cds");
+    const cdsFileRelPath = cds.utils.path.join(dbPath, "agent-memory.cds");
     const cdsFileAbsPath = cds.utils.path.join(cds.root, cdsFileRelPath);
 
     if (!cds.utils.fs.existsSync(cdsFileAbsPath)) {

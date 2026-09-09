@@ -162,8 +162,10 @@ jobs:
           cd packages/integration-tests
           export CDS_ROOT="$GITHUB_WORKSPACE/packages/integration-tests"
           pnpm exec cds add langgraph-checkpointer
-          pnpm exec cds add cap-agents-memory
-          pnpm exec cds add cap-agents-memory
+
+          # Add the agent-memory store to the project (twice to check if it does not break on subsequent additions)
+          pnpm exec cds add agent-memory
+          pnpm exec cds add agent-memory
 
       - name: Run unit & integration tests
         shell: bash

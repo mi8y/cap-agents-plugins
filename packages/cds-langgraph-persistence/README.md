@@ -60,7 +60,7 @@ cds.spawn({ every: 60 * 60 * 1000 }, () => purgeExpiredCheckpoints());
 
 ## Long-term memory
 
-For cross-thread user preferences, facts, and Store API search, install [`@mi8y/cap-agents-memory`](../cap-agents-memory/). It provides `CdsMemoryStore` and `cds add cap-agents-memory`.
+For cross-thread user preferences, facts, and Store API search, install [`@mi8y/cap-agents-memory`](../cap-agents-memory/). It provides `CdsMemoryStore` and `cds add agent-memory`.
 
 ## License
 
