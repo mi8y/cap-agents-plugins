@@ -172,7 +172,7 @@ export function mapMetadataFilterToCdsWhere(
   metadataEntity: string,
   filter: MetadataFilter | undefined,
   storeName: string,
-): string | undefined {
+): cds.xpr | undefined {
   if (!filter) {
     return undefined;
   }
@@ -199,5 +199,7 @@ export function mapMetadataFilterToCdsWhere(
     }
   }
 
-  return clauses.length > 0 ? clauses.join(" and ") : undefined;
+  return clauses.length > 0
+    ? (cds.parse.expr(clauses.join(" and ")) as cds.xpr)
+    : undefined;
 }

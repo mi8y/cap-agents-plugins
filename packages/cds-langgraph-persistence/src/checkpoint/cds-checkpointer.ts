@@ -146,6 +146,79 @@ export class CdsCheckpointSaver extends BaseCheckpointSaver {
     );
   }
 
+  /**
+   * Rehydrates channel values and versions omitted from a sparse checkpoint.
+   *
+   * `put()` persists only channels present in `newVersions`; this method walks
+   * the checkpoint's parent chain and fills missing entries from ancestors.
+   * Values and versions stored on the requested checkpoint always take
+   * precedence. It stops safely when an ancestor is missing or a cycle is
+   * detected, and returns a new checkpoint without mutating the deserialized
+   * input.
+   */
+  async #reconstructCheckpoint(
+    checkpoint: Checkpoint,
+    parentId: string | null | undefined,
+    threadId: string,
+    namespace: string,
+  ): Promise<Checkpoint> {
+    if (!parentId) {
+      return checkpoint;
+    }
+
+    const channelValues = { ...checkpoint.channel_values };
+    const channelVersions = { ...checkpoint.channel_versions };
+    const visited = new Set<string>([checkpoint.id]);
+    let currentParentId: string | null | undefined = parentId;
+
+    while (currentParentId && !visited.has(currentParentId)) {
+      visited.add(currentParentId);
+
+      const parentRows = (await SELECT.from(this.#fqnCheckpointsEntity)
+        .where({
+          graphName: this.#graphName,
+          threadId,
+          namespace,
+          id: currentParentId,
+        })
+        .limit(1)) as TCheckpoint[];
+      const parentRow = parentRows[0];
+
+      if (!parentRow) {
+        break;
+      }
+
+      const parentCheckpoint = (await this.serde.loadsTyped(
+        parentRow.type ?? "json",
+        parentRow.checkpoint ?? "",
+      )) as Checkpoint;
+
+      for (const [channel, value] of Object.entries(
+        parentCheckpoint.channel_values,
+      )) {
+        if (!(channel in channelValues)) {
+          channelValues[channel] = value;
+        }
+      }
+
+      for (const [channel, version] of Object.entries(
+        parentCheckpoint.channel_versions,
+      )) {
+        if (!(channel in channelVersions)) {
+          channelVersions[channel] = version;
+        }
+      }
+
+      currentParentId = parentRow.parent_id;
+    }
+
+    return {
+      ...checkpoint,
+      channel_values: channelValues,
+      channel_versions: channelVersions,
+    };
+  }
+
   async getTuple(config: RunnableConfig): Promise<CheckpointTuple | undefined> {
     if (!config.configurable) {
       throw new Error(`Empty "config.configurable" supplied`);
@@ -209,8 +282,15 @@ export class CdsCheckpointSaver extends BaseCheckpointSaver {
       );
     }
 
+    const reconstructedCheckpoint = await this.#reconstructCheckpoint(
+      checkpoint,
+      resCheckpoint.parent_id,
+      resCheckpoint.threadId!,
+      resCheckpoint.namespace ?? "",
+    );
+
     return {
-      checkpoint: checkpoint,
+      checkpoint: reconstructedCheckpoint,
       config: {
         configurable: {
           thread_id: resCheckpoint.threadId,
@@ -328,6 +408,13 @@ export class CdsCheckpointSaver extends BaseCheckpointSaver {
         );
       }
 
+      const reconstructedCheckpoint = await this.#reconstructCheckpoint(
+        checkpoint,
+        checkpointState.parent_id,
+        checkpointState.threadId!,
+        checkpointState.namespace ?? "",
+      );
+
       yield {
         config: {
           configurable: {
@@ -336,7 +423,7 @@ export class CdsCheckpointSaver extends BaseCheckpointSaver {
             checkpoint_id: checkpointState.id,
           },
         },
-        checkpoint: checkpoint,
+        checkpoint: reconstructedCheckpoint,
         parentConfig: checkpointState.parent_id
           ? {
               configurable: {

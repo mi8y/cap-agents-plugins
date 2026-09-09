@@ -1,5 +1,6 @@
 import { describe, expect, test } from "vitest";
 import * as utils from "@/utils";
+import cds from "@sap/cds";
 
 describe("serializeEmbedding", () => {
   test("serializes number array to JSON-like string", () => {
@@ -151,8 +152,10 @@ describe("mapMetadataFilterToDocumentWhere", () => {
         { priority: 3 },
         "store-1",
       ),
-    ).toBe(
-      "documentId in (select documentId from MyMetadata where storeName = 'store-1' and name = 'priority' and value = '3')",
+    ).toEqual(
+      cds.parse.expr(
+        "documentId in (select documentId from MyMetadata where storeName = 'store-1' and name = 'priority' and value = '3')",
+      ),
     );
   });
 
@@ -165,8 +168,10 @@ describe("mapMetadataFilterToDocumentWhere", () => {
         },
         "store-1",
       ),
-    ).toBe(
-      "documentId in (select documentId from MyMetadata where storeName = 'store-1' and name = 'priority' and value = '5')",
+    ).toEqual(
+      cds.parse.expr(
+        "documentId in (select documentId from MyMetadata where storeName = 'store-1' and name = 'priority' and value = '5')",
+      ),
     );
   });
 
@@ -179,8 +184,10 @@ describe("mapMetadataFilterToDocumentWhere", () => {
         },
         "store-1",
       ),
-    ).toBe(
-      "documentId in (select documentId from MyMetadata where storeName = 'store-1' and name = 'priority') and documentId not in (select documentId from MyMetadata where storeName = 'store-1' and (name = 'priority' and value = '5'))",
+    ).toEqual(
+      cds.parse.expr(
+        "documentId in (select documentId from MyMetadata where storeName = 'store-1' and name = 'priority') and documentId not in (select documentId from MyMetadata where storeName = 'store-1' and (name = 'priority' and value = '5'))",
+      ),
     );
   });
 
@@ -194,8 +201,10 @@ describe("mapMetadataFilterToDocumentWhere", () => {
         },
         "store-1",
       ),
-    ).toBe(
-      "documentId in (select documentId from MyMetadata where storeName = 'store-1' and name = 'color' and value = '\"red\"') and documentId in (select documentId from MyMetadata where storeName = 'store-1' and name = 'shape' and value = '\"circle\"')",
+    ).toEqual(
+      cds.parse.expr(
+        `documentId in (select documentId from MyMetadata where storeName = 'store-1' and name = 'color' and value = '\"red\"') and documentId in (select documentId from MyMetadata where storeName = 'store-1' and name = 'shape' and value = '\"circle\"')`,
+      ),
     );
   });
 
@@ -208,8 +217,10 @@ describe("mapMetadataFilterToDocumentWhere", () => {
         },
         "store-1",
       ),
-    ).toBe(
-      "documentId in (select documentId from MyMetadata where storeName = 'store-1' and name = 'priority' and value = '3') and documentId not in (select documentId from MyMetadata where storeName = 'store-1' and (name = 'priority' and value = '9'))",
+    ).toEqual(
+      cds.parse.expr(
+        "documentId in (select documentId from MyMetadata where storeName = 'store-1' and name = 'priority' and value = '3') and documentId not in (select documentId from MyMetadata where storeName = 'store-1' and (name = 'priority' and value = '9'))",
+      ),
     );
   });
 
@@ -222,8 +233,10 @@ describe("mapMetadataFilterToDocumentWhere", () => {
         },
         "store-1",
       ),
-    ).toBe(
-      "documentId in (select documentId from MyMetadata where storeName = 'store-1' and name = 'priority' and value in ('1', '3', '5'))",
+    ).toEqual(
+      cds.parse.expr(
+        "documentId in (select documentId from MyMetadata where storeName = 'store-1' and name = 'priority' and value in ('1', '3', '5'))",
+      ),
     );
   });
 
@@ -236,8 +249,10 @@ describe("mapMetadataFilterToDocumentWhere", () => {
         },
         "store-1",
       ),
-    ).toBe(
-      "documentId in (select documentId from MyMetadata where storeName = 'store-1' and name = 'priority') and documentId not in (select documentId from MyMetadata where storeName = 'store-1' and (name = 'priority' and value in ('2', '4')))",
+    ).toEqual(
+      cds.parse.expr(
+        "documentId in (select documentId from MyMetadata where storeName = 'store-1' and name = 'priority') and documentId not in (select documentId from MyMetadata where storeName = 'store-1' and (name = 'priority' and value in ('2', '4')))",
+      ),
     );
   });
 
@@ -252,8 +267,10 @@ describe("mapMetadataFilterToDocumentWhere", () => {
         },
         "store-1",
       ),
-    ).toBe(
-      "documentId in (select documentId from MyMetadata where storeName = 'store-1' and name = 'color' and value = '\"red\"')",
+    ).toEqual(
+      cds.parse.expr(
+        `documentId in (select documentId from MyMetadata where storeName = 'store-1' and name = 'color' and value = '\"red\"')`,
+      ),
     );
   });
 

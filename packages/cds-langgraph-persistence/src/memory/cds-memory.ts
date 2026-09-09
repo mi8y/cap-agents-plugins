@@ -131,7 +131,6 @@ export class CdsMemoryStore extends BaseStore {
     offset,
     query,
   }: SearchOperation): Promise<SearchItem[]> {
-    // @ts-expect-error: The `expr` function is not recognized by TypeScript, but it is available in the runtime environment.
     const { expr } = cds.ql;
 
     const namespacePrefixKey = utils.mapNamespaceToCds(namespacePrefix);
@@ -150,9 +149,9 @@ export class CdsMemoryStore extends BaseStore {
         this.#graphName,
         namespacePrefixKey,
       );
-      cdsQuery = cdsQuery.where(
-        metadataWhere ? expr(metadataWhere) : undefined,
-      );
+      if (metadataWhere) {
+        cdsQuery = cdsQuery.where(metadataWhere);
+      }
     }
 
     if (query) {
