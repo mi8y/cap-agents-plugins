@@ -8,7 +8,6 @@ import {
 import { Embeddings } from "@langchain/core/embeddings";
 import { InvalidNamespaceError } from "@langchain/langgraph-checkpoint";
 import cds from "@sap/cds";
-import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from "vitest";
 

@@ -1,5 +1,6 @@
 import { describe, expect, test } from "vitest";
 import * as utils from "@/memory/utils";
+import cds from "@sap/cds";
 
 describe("mapMetadataFilterToCdsWhere", () => {
   test("maps direct equality filter", () => {
@@ -10,8 +11,10 @@ describe("mapMetadataFilterToCdsWhere", () => {
         "test-graph",
         "docs",
       ),
-    ).toBe(
-      "id in (select id from plugin.langgraph.persistence.StoreItemFields where graphName = 'test-graph' and namespace like 'docs%' and name = 'priority' and value = '3')",
+    ).toEqual(
+      cds.parse.expr(
+        "id in (select id from plugin.langgraph.persistence.StoreItemFields where graphName = 'test-graph' and namespace like 'docs%' and name = 'priority' and value = '3')",
+      ),
     );
   });
 
@@ -23,8 +26,10 @@ describe("mapMetadataFilterToCdsWhere", () => {
         "test-graph",
         "docs",
       ),
-    ).toBe(
-      "id in (select id from plugin.langgraph.persistence.StoreItemFields where graphName = 'test-graph' and namespace like 'docs%' and name = 'priority' and value = '5')",
+    ).toEqual(
+      cds.parse.expr(
+        "id in (select id from plugin.langgraph.persistence.StoreItemFields where graphName = 'test-graph' and namespace like 'docs%' and name = 'priority' and value = '5')",
+      ),
     );
   });
 
@@ -36,8 +41,10 @@ describe("mapMetadataFilterToCdsWhere", () => {
         "test-graph",
         "docs",
       ),
-    ).toBe(
-      "id in (select id from plugin.langgraph.persistence.StoreItemFields where graphName = 'test-graph' and namespace like 'docs%' and name = 'priority') and id not in (select id from plugin.langgraph.persistence.StoreItemFields where graphName = 'test-graph' and namespace like 'docs%' and (name = 'priority' and value = '5'))",
+    ).toEqual(
+      cds.parse.expr(
+        "id in (select id from plugin.langgraph.persistence.StoreItemFields where graphName = 'test-graph' and namespace like 'docs%' and name = 'priority') and id not in (select id from plugin.langgraph.persistence.StoreItemFields where graphName = 'test-graph' and namespace like 'docs%' and (name = 'priority' and value = '5'))",
+      ),
     );
   });
 
@@ -49,8 +56,10 @@ describe("mapMetadataFilterToCdsWhere", () => {
         "test-graph",
         "docs",
       ),
-    ).toBe(
-      "id in (select id from plugin.langgraph.persistence.StoreItemFields where graphName = 'test-graph' and namespace like 'docs%' and name = 'color' and value = '\"red\"') and id in (select id from plugin.langgraph.persistence.StoreItemFields where graphName = 'test-graph' and namespace like 'docs%' and name = 'shape' and value = '\"circle\"')",
+    ).toEqual(
+      cds.parse.expr(
+        `id in (select id from plugin.langgraph.persistence.StoreItemFields where graphName = 'test-graph' and namespace like 'docs%' and name = 'color' and value = '\"red\"') and id in (select id from plugin.langgraph.persistence.StoreItemFields where graphName = 'test-graph' and namespace like 'docs%' and name = 'shape' and value = '\"circle\"')`,
+      ),
     );
   });
 
@@ -62,8 +71,10 @@ describe("mapMetadataFilterToCdsWhere", () => {
         "test-graph",
         "docs",
       ),
-    ).toBe(
-      "id in (select id from plugin.langgraph.persistence.StoreItemFields where graphName = 'test-graph' and namespace like 'docs%' and name = 'priority' and value = '3') and id not in (select id from plugin.langgraph.persistence.StoreItemFields where graphName = 'test-graph' and namespace like 'docs%' and (name = 'priority' and value = '9'))",
+    ).toEqual(
+      cds.parse.expr(
+        "id in (select id from plugin.langgraph.persistence.StoreItemFields where graphName = 'test-graph' and namespace like 'docs%' and name = 'priority' and value = '3') and id not in (select id from plugin.langgraph.persistence.StoreItemFields where graphName = 'test-graph' and namespace like 'docs%' and (name = 'priority' and value = '9'))",
+      ),
     );
   });
 
@@ -75,8 +86,10 @@ describe("mapMetadataFilterToCdsWhere", () => {
         "test-graph",
         "docs",
       ),
-    ).toBe(
-      "id in (select id from plugin.langgraph.persistence.StoreItemFields where graphName = 'test-graph' and namespace like 'docs%' and name = 'priority' and value in ('1', '3', '5'))",
+    ).toEqual(
+      cds.parse.expr(
+        "id in (select id from plugin.langgraph.persistence.StoreItemFields where graphName = 'test-graph' and namespace like 'docs%' and name = 'priority' and value in ('1', '3', '5'))",
+      ),
     );
   });
 
@@ -88,8 +101,10 @@ describe("mapMetadataFilterToCdsWhere", () => {
         "test-graph",
         "docs",
       ),
-    ).toBe(
-      "id in (select id from plugin.langgraph.persistence.StoreItemFields where graphName = 'test-graph' and namespace like 'docs%' and name = 'priority') and id not in (select id from plugin.langgraph.persistence.StoreItemFields where graphName = 'test-graph' and namespace like 'docs%' and (name = 'priority' and value in ('2', '4')))",
+    ).toEqual(
+      cds.parse.expr(
+        "id in (select id from plugin.langgraph.persistence.StoreItemFields where graphName = 'test-graph' and namespace like 'docs%' and name = 'priority') and id not in (select id from plugin.langgraph.persistence.StoreItemFields where graphName = 'test-graph' and namespace like 'docs%' and (name = 'priority' and value in ('2', '4')))",
+      ),
     );
   });
 
@@ -105,8 +120,10 @@ describe("mapMetadataFilterToCdsWhere", () => {
         "test-graph",
         "docs",
       ),
-    ).toBe(
-      "id in (select id from plugin.langgraph.persistence.StoreItemFields where graphName = 'test-graph' and namespace like 'docs%' and name = 'color' and value = '\"red\"')",
+    ).toEqual(
+      cds.parse.expr(
+        `id in (select id from plugin.langgraph.persistence.StoreItemFields where graphName = 'test-graph' and namespace like 'docs%' and name = 'color' and value = '\"red\"')`,
+      ),
     );
   });
 
@@ -143,8 +160,10 @@ describe("mapMetadataFilterToCdsWhere", () => {
         "test-graph",
         "nested:docs",
       ),
-    ).toBe(
-      "id in (select id from plugin.langgraph.persistence.StoreItemFields where graphName = 'test-graph' and namespace like 'nested:docs%' and name = 'category' and value = '\"programming\"')",
+    ).toEqual(
+      cds.parse.expr(
+        `id in (select id from plugin.langgraph.persistence.StoreItemFields where graphName = 'test-graph' and namespace like 'nested:docs%' and name = 'category' and value = '\"programming\"')`,
+      ),
     );
   });
 
@@ -156,8 +175,10 @@ describe("mapMetadataFilterToCdsWhere", () => {
         "test-graph",
         "docs",
       ),
-    ).toBe(
-      "id in (select id from plugin.langgraph.persistence.StoreItemFields where graphName = 'test-graph' and namespace like 'docs%' and name = 'title' and value = '\"O''Brien''s Guide\"')",
+    ).toEqual(
+      cds.parse.expr(
+        `id in (select id from plugin.langgraph.persistence.StoreItemFields where graphName = 'test-graph' and namespace like 'docs%' and name = 'title' and value = '\"O''Brien''s Guide\"')`,
+      ),
     );
   });
 });

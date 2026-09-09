@@ -2,6 +2,7 @@
 import { Embeddings } from "@langchain/core/embeddings";
 import { Item } from "@langchain/langgraph-checkpoint";
 import { StoreItem, StoreItemField } from "#cds-models/index";
+import cds from "@sap/cds";
 
 export function mapNamespaceToCds(namespace: string[]): string {
   return namespace.join(":");
@@ -213,7 +214,7 @@ export function mapMetadataFilterToCdsWhere(
   filter: MetadataFilter | undefined,
   graphName: string,
   namespace: string,
-): string | undefined {
+): cds.xpr | undefined {
   if (!filter) {
     return undefined;
   }
@@ -240,7 +241,9 @@ export function mapMetadataFilterToCdsWhere(
     }
   }
 
-  return clauses.length > 0 ? clauses.join(" and ") : undefined;
+  return clauses.length > 0
+    ? (cds.parse.expr(clauses.join(" and ")) as cds.xpr)
+    : undefined;
 }
 
 export async function embedCdsStoreItemFields(

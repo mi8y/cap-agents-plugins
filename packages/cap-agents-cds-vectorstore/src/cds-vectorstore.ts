@@ -135,7 +135,6 @@ export class CDSVectorStore extends VectorStore {
       similarity: number;
     }[]
   > {
-    // @ts-expect-error: The `expr` function is not recognized by TypeScript, but it is available in the runtime environment.
     const { expr } = cds.ql;
 
     // build the embedding string for the query
@@ -149,7 +148,6 @@ export class CDSVectorStore extends VectorStore {
       filter,
       this.#storeName,
     );
-
     const relationProperty = "metadata" as const;
     type ParentDocument = VectorDocument & {
       cosine_similarity?: number;
@@ -167,8 +165,8 @@ export class CDSVectorStore extends VectorStore {
         { parent: "storeName", child: "storeName" },
         { parent: "documentId", child: "documentId" },
       ],
-      readParents: async () =>
-        SELECT.from(this.#fqnVectorDocument)
+      readParents: async () => {
+        let cdsQuery = SELECT.from(this.#fqnVectorDocument)
           .columns([
             "storeName",
             "documentId",
@@ -178,10 +176,12 @@ export class CDSVectorStore extends VectorStore {
           ])
           .where(
             expr`storeName = ${this.#storeName} and cosine_similarity(embedding, ${embeddingStr}) > ${this.#searchThreshold}`,
-          )
-          .where(metadataWhere ? expr(metadataWhere) : undefined)
-          .limit(k)
-          .orderBy("cosine_similarity desc"),
+          );
+        if (metadataWhere) {
+          cdsQuery = cdsQuery.where(metadataWhere);
+        }
+        return cdsQuery.limit(k).orderBy("cosine_similarity desc");
+      },
       readChildren: async ({ where }) => {
         return await SELECT.from(this.#fqnVectorDocumentMetadata).where(where);
       },
